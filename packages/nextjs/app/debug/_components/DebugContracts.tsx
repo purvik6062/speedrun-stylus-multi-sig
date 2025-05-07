@@ -47,7 +47,7 @@ export default function DebugContracts() {
         const network = await provider.getNetwork();
         console.log("Connected to network:", network.name);
       } catch (e) {
-        throw new Error("Failed to connect to network. Please check your RPC URL and network status");
+        throw new Error("Failed to connect to network. Please check your RPC URL and network status", { cause: e });
       }
 
       const signer = new ethers.Wallet(privateKey, provider);
@@ -68,7 +68,7 @@ export default function DebugContracts() {
         await newContract.numConfirmationsRequired();
         console.log("Contract connection successful");
       } catch (e) {
-        throw new Error("Contract interaction failed. Please verify the contract ABI and address");
+        throw new Error("Contract interaction failed. Please verify the contract ABI and address", { cause: e });
       }
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : "Failed to initialize contract";
