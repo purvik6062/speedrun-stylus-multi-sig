@@ -1,5 +1,7 @@
 # 🚩 Challenge #3: 🎟 Multisig Wallet
 
+> ⚠️ **Important:** Please complete **Challenge #2** first if you haven't already, as it contains essential instructions related to all upcoming challenges.
+
 🎛️ Multisig Wallet on Stylus 💼
 
 🚀 Overview
@@ -39,9 +41,8 @@ Then download the challenge to your computer and install dependencies by running
 > ⚠️ IMPORTANT: Please make sure to run the below commands through WSL only. In PowerShell, you'll get an error because some files are not supported on Windows.
 
 ```sh
-git clone https://github.com/abhi152003/speedrun_stylus.git
+git clone -b multi-sig https://github.com/abhi152003/speedrun_stylus.git
 cd speedrun_stylus
-git checkout multi-sig
 yarn install
 ```
 
@@ -299,4 +300,4 @@ cargo stylus deploy -e http://127.0.0.1:8547 --private-key "$your_private_key"
 
 Explore more challenges or contribute to this project!
 
-> 🏃 Head to your next challenge [here](https://github.com/abhi152003/speedrun_stylus).
+> 🏃 Head to your next challenge [here](https://speedrun-stylus.vercel.app/challenge/uniswap-v2-stylus).
