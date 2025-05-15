@@ -3,6 +3,8 @@
 // @refresh reset
 import { useNetworkColor } from "~~/hooks/scaffold-eth";
 import { useDevAccount } from "~~/hooks/scaffold-eth/useDevAccount";
+import { useEffect, useState } from "react";
+import { copyToClipboard } from "~~/utils/scaffold-eth/copyToClipboard";
 
 /**
  * Custom Wagmi Connect Button (watch balance + custom design)
@@ -10,8 +12,21 @@ import { useDevAccount } from "~~/hooks/scaffold-eth/useDevAccount";
 export const RainbowKitCustomConnectButton = () => {
   const networkColor = useNetworkColor();
   const { balance, address } = useDevAccount();
+  const [copied, setCopied] = useState(false);
 
   const formattedBalance = parseFloat(balance).toFixed(2);
+
+  const handleCopy = () => {
+    if (address) {
+      copyToClipboard(address);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
+  useEffect(() => {
+    // This can be updated dynamically if balance changes are broadcasted or polled
+  }, [balance]);
 
   return (
     <div className="flex items-center">
@@ -22,9 +37,12 @@ export const RainbowKitCustomConnectButton = () => {
             <span className="text-lg font-medium">{formattedBalance} ETH</span>
             <div 
               className="tooltip tooltip-bottom tooltip-primary relative" 
-              data-tip={address?.slice(0, 20) + "..." + address?.slice(-8)}
+              data-tip={copied ? "Copied!" : address?.slice(0, 20) + "..." + address?.slice(-8)}
             >
-              <span className="text-sm text-base-content/70 hover:text-base-content cursor-pointer">
+              <span 
+                className="text-sm text-base-content/70 hover:text-base-content cursor-pointer"
+                onClick={handleCopy}
+              >
                 {address?.slice(0, 6)}...{address?.slice(-4)}
               </span>
               <style jsx>{`

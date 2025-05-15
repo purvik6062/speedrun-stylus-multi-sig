@@ -296,4 +296,39 @@ impl MultiSig {
     pub fn get_transaction_count(&self) -> U256 {
         U256::from(self.transactions.len())
     }
+
+    // The `get_transaction` method returns the details of a transaction.
+    pub fn get_transaction(&self, tx_index: U256) -> Result<(Address, U256, Bytes, bool, U256), MultiSigError> {
+        let tx_idx_usize = tx_index.to::<usize>();
+        if tx_idx_usize >= self.transactions.len() {
+            return Err(MultiSigError::TxDoesNotExist(TxDoesNotExist {}));
+        }
+
+        // Accessing through the BTreeMap directly via .get()
+        if let Some(tx_entry) = self.transactions.get(tx_idx_usize) {
+             Ok((
+                tx_entry.to.get(),
+                tx_entry.value.get(),
+                tx_entry.data.get_bytes().into(), // Convert Vec<u8> to Bytes
+                tx_entry.executed.get(),
+                tx_entry.num_confirmations.get(),
+            ))
+        } else {
+            // This branch should theoretically be unreachable if tx_idx_usize < self.transactions.len()
+            // and transactions is a Vec. However, if transactions were a map-like structure where indices
+            // could be non-contiguous, this would be relevant. Given it's a StorageVec, the length check is primary.
+            Err(MultiSigError::TxDoesNotExist(TxDoesNotExist {}))
+        }
+    }
+
+    // The `get_owners` method returns the list of owners.
+    pub fn get_owners(&self) -> Result<Vec<Address>, MultiSigError> {
+        let mut owners_vec = Vec::new();
+        for i in 0..self.owners.len() { // Corrected: iterate over self.owners.len()
+            if let Some(owner) = self.owners.get(i) {
+                owners_vec.push(owner);
+            }
+        }
+        Ok(owners_vec)
+    }
 }
