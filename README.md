@@ -61,7 +61,13 @@ cd cargo-stylus
 cd multi-sig
 ```
 
-> Open your Docker Desktop, then return to your IDE and run the following command. This will spin up the Nitro dev node in Docker. It may take some time to deploy the Rust contract, after which the script will generate the ABI. You can monitor transactions in your terminal and Docker Desktop. The node runs at `localhost:8547`.
+> Now open your Docker desktop and then return to your IDE and run the command below to spin up the nitro devnode in Docker. This will deploy the contract and generate the ABI so you can interact with the contracts written in RUST:
+
+```bash
+bash run-dev-node.sh
+```
+
+This command will spin up the nitro devnode in Docker. You can check it out in your Docker desktop. This will take some time to deploy the RUST contract, and then the script will automatically generate the ABI. You can view all these transactions in your terminal and Docker desktop. The Docker node is running at localhost:8547, but before running this command make sure about the below thing
 
 ## 🚨 Fixing Line Endings and Running Shell Scripts in WSL on a CRLF-Based Windows System
 
@@ -230,4 +236,4 @@ cargo stylus deploy -e http://127.0.0.1:8547 --private-key "$your_private_key"
 
 Explore more challenges or contribute to this project!
 
-> 🏃 Head to your next challenge [here](https://speedrun-stylus.vercel.app/challenge/uniswap-v2-stylus).
+> 🏃 Head to your next challenge [here](https://speedrunstylus.com/challenge/uniswap-v2-stylus).
