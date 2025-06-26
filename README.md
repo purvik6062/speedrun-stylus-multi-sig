@@ -131,44 +131,44 @@ The interface guides you through the multisig wallet process with the following 
 #### **Step 1: Initialize the Contract**
 - **Set Owners**: Provide a comma-separated list of owner addresses (e.g., `0x123..., 0x456...`).
 - **Define Confirmation Requirements**: Specify the number of confirmations needed for a transaction to execute (must be between 1 and the number of owners).
-![Initialize the contract.](./packages/nextjs/public/contract-init-new.png)
+![Initialize the contract.](https://raw.githubusercontent.com/abhi152003/speedrun_stylus/refs/heads/multi-sig/packages/nextjs/public/contract-init-new.png)
 
 **Why?** This establishes the security framework by defining who controls the wallet and how many approvals are needed, preventing single-point failures.
 
 #### **Step 2: Deposit ETH**
 - **Deposit Funds**: Send ETH to the contract to fund transactions.
-![Deposit ETH.](./packages/nextjs/public/deposit-eth.png)
+![Deposit ETH.](https://raw.githubusercontent.com/abhi152003/speedrun_stylus/refs/heads/multi-sig/packages/nextjs/public/deposit-eth.png)
 **Why?** Funds are necessary for the wallet to operate. This step ensures the contract has the necessary balance for outgoing transactions.
 
 #### **Step 3: Submit a Transaction**
 - **Enter Details**: Specify the recipient address, ETH amount, and optional hex data for smart contract interactions.
 - **Submit**: Add the transaction to the pending list for owner approval.
-![Submit a transaction.](./packages/nextjs/public/submit-transaction.png)
+![Submit a transaction.](https://raw.githubusercontent.com/abhi152003/speedrun_stylus/refs/heads/multi-sig/packages/nextjs/public/submit-transaction.png)
 **Why?** This initiates the transaction process, allowing owners to review and approve before execution.
 
 Note : You'll be able to see your transaction index at the top of the page which you can use to perform the next steps.
-![Transaction Index.](./packages/nextjs/public/transaction-index.png)
+![Transaction Index.](https://raw.githubusercontent.com/abhi152003/speedrun_stylus/refs/heads/multi-sig/packages/nextjs/public/transaction-index.png)
 
 #### **Step 4: Confirm a Transaction**
 - **Approve**: Owners confirm transactions using the transaction index.
-![Confirm the transaction.](./packages/nextjs/public/confirm-transaction.png)
+![Confirm the transaction.](https://raw.githubusercontent.com/abhi152003/speedrun_stylus/refs/heads/multi-sig/packages/nextjs/public/confirm-transaction.png)
 **Why?** Confirmations ensure consensus among owners, a core security feature of multisig wallets.
 
 #### **Step 5: Execute a Transaction**
 - **Check Status**: Verify if the required confirmations are met.
 - **Execute**: Transfer funds to the recipient once approved.
-![Execute the transaction (after required confirmations).](./packages/nextjs/public/execute-transaction.png)
+![Execute the transaction (after required confirmations).](https://raw.githubusercontent.com/abhi152003/speedrun_stylus/refs/heads/multi-sig/packages/nextjs/public/execute-transaction.png)
 **Why?** Execution finalizes the transaction, securely transferring funds only after consensus.
 
 #### **Step 6: Revoke Confirmation (Optional)**
 - **Revoke**: Owners can withdraw their confirmation if they change their mind before execution.
-![Revoke confirmation (if necessary).](./packages/nextjs/public/revoke-transaction.png)
+![Revoke confirmation (if necessary).](https://raw.githubusercontent.com/abhi152003/speedrun_stylus/refs/heads/multi-sig/packages/nextjs/public/revoke-transaction.png)
 **Why?** Adds flexibility, allowing owners to adapt to new information or concerns.
 
 #### **Step 7: Check Contract Details**
 - **Owner Status**: Verify if an address is an owner.
 - **Contract Stats**: View total transactions and required confirmations.
-![Check Owner Status.](./packages/nextjs/public/check-owner.png)
+![Check Owner Status.](https://raw.githubusercontent.com/abhi152003/speedrun_stylus/refs/heads/multi-sig/packages/nextjs/public/check-owner.png)
 **Why?** Provides transparency and easy access to critical wallet information.
 
 #### **Step 8: Track Transactions**
