@@ -109,10 +109,22 @@ Shell scripts created in Windows often have `CRLF` line endings, which cause iss
 
 > Then, in a second WSL terminal window, start your 📱 frontend:
 
+> ⚠️ **Before running the frontend:**
+> 
+>    Go to the `packages/nextjs` directory:
+>    ```bash
+>    cd packages/nextjs
+>    cp .env.example .env
+>    ```
+>    Open the `.env` file and set:
+>    ```env
+>    NEXT_PUBLIC_RPC_URL=http://localhost:8547
+>    NEXT_PUBLIC_PRIVATE_KEY=your_private_key_of_your_ethereum_wallet
+>    ```
+>    (For Sepolia, see instructions below.)
+
 ```sh
-cd speedrun_stylus # if not done
-cd packages # if not done
-cd nextjs
+cd packages/nextjs
 yarn run dev OR yarn dev
 ```
 
@@ -229,6 +241,43 @@ If you want to redeploy after verification, use:
 cargo stylus deploy -e http://127.0.0.1:8547 --private-key "$your_private_key"
 # You can use the pre-funded account's private key as well.
 ```
+
+---
+
+## 🚀 Deploying to Arbitrum Sepolia
+
+If you want to deploy your Vending Machine contract to the Arbitrum Sepolia testnet, follow these steps:
+
+1. **Export your private key in the terminal**
+   ```bash
+   export PRIVATE_KEY=your_private_key_of_your_ethereum_wallet
+   ```
+
+2. **Run the Sepolia Deployment Script**
+   ```bash
+   cd packages/cargo-stylus/vending_machine
+   bash run-sepolia-deploy.sh
+   ```
+   This will deploy your contract to Arbitrum Sepolia and output the contract address and transaction hash.
+
+3. **Configure the Frontend for Sepolia**
+   - Go to the `packages/nextjs` directory:
+     ```bash
+     cd packages/nextjs
+     cp .env.example .env
+     ```
+   - Open the `.env` file and set the following variables:
+     ```env
+     NEXT_PUBLIC_RPC_URL=https://sepolia-rollup.arbitrum.io/rpc
+     NEXT_PUBLIC_PRIVATE_KEY=your_private_key_of_your_ethereum_wallet
+     ```
+     Replace `your_private_key_of_your_ethereum_wallet` with your actual Ethereum wallet private key (never share this key publicly).
+
+4. **Start the Frontend**
+   ```bash
+   yarn run dev
+   ```
+   Your frontend will now connect to the Arbitrum Sepolia network and interact with your deployed contract.
 
 ---
 

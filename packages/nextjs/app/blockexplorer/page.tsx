@@ -17,8 +17,8 @@ const localNitro = {
     symbol: 'ETH',
   },
   rpcUrls: {
-    default: { http: ['http://localhost:8547'] },
-    public: { http: ['http://localhost:8547'] },
+    default: { http: [process.env.NEXT_PUBLIC_RPC_URL || ''] },
+    public: { http: [process.env.NEXT_PUBLIC_RPC_URL || ''] },
   },
 } as const;
 
@@ -49,7 +49,7 @@ const BlockExplorer: NextPage = () => {
       <div className="container mx-auto my-10 p-4">
         <div className="alert alert-error">
           <p className="font-bold">Cannot connect to local Arbitrum Nitro node</p>
-          <p>Make sure your Nitro node is running at http://localhost:8547</p>
+          <p>Make sure your Nitro node is running at localhost:8547</p>
         </div>
       </div>
     );
