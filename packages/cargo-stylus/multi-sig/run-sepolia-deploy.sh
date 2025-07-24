@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Load environment variables from .env file
+if [ -f .env ]; then
+  source .env
+fi
+
 set -e
 
 # Arbitrum Sepolia RPC
@@ -32,6 +37,7 @@ echo "✅ Connected to Arbitrum Sepolia."
 
 # Deploy Multi-Sig contract using cargo stylus
 echo "🚀 Deploying Multi-Sig Stylus contract..."
+cargo stylus deploy -e "$SEPOLIA_RPC_URL" --private-key "$PRIVATE_KEY" --no-verify
 deploy_output=$(cargo stylus deploy -e "$SEPOLIA_RPC_URL" --private-key "$PRIVATE_KEY" --no-verify 2>&1)
 
 if [[ $? -ne 0 ]]; then

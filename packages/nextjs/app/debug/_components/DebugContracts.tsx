@@ -32,7 +32,7 @@ export default function DebugContracts() {
     try {
       if (typeof window === "undefined") return;
 
-      const contractAddress = "0x5614c33a49cc4ef7aa90e517a59c012f6072eb5c";
+      const contractAddress = "0x85bd1a76e588e2539fd450afd6255806e7026049";
       const rpcUrl = process.env.NEXT_PUBLIC_RPC_URL || '';
       const privateKey = process.env.NEXT_PUBLIC_PRIVATE_KEY || '';
       // const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;

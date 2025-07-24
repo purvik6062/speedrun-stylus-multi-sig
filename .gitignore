@@ -22,3 +22,5 @@ node_modules
 # cli
 dist
 .vercel
+
+/packages/cargo-stylus/multi-sig/.env
