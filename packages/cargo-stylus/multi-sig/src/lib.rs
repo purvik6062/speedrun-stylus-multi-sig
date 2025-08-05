@@ -5,6 +5,7 @@ extern crate alloc;
 /// Import items from the SDK. The prelude contains common traits and macros.
 use stylus_sdk::{contract, evm, msg, prelude::*, call::{Call, call}, alloy_primitives::{Address, U256}, abi::Bytes};
 use alloy_sol_types::sol;
+use stylus_cache_sdk::{is_contract_cacheable};
 
 // Define some events using the Solidity ABI.
 sol! {
@@ -93,6 +94,14 @@ impl MultiSig {
                 amount: amount, 
                 balance: contract::balance()
             });
+    }
+
+    pub fn is_cacheable(&self) -> bool {
+        is_contract_cacheable()
+    }
+
+    pub fn is_cacheable_2(&self) -> bool {
+        true
     }
 
     // The `submit_transaction` method submits a new transaction to the contract.
